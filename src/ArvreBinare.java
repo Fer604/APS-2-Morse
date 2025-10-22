@@ -30,6 +30,17 @@ public class ArvreBinare {
             exibir(no.getDireita(), nivel + 1);
         }
     }
+    public char buscar(String codigo) {
+        Node atual = raiz;
+        for (int i = 0; i < codigo.length(); i++) {
+            char simbolo = codigo.charAt(i);
+            if (simbolo == '.') atual = atual.getEsquerda();
+            else if (simbolo == '-') atual = atual.getDireita();
+
+            if (atual == null) return '?'; // não encontrado
+        }
+        return atual.getCaracter();
+    }
 //    public void preOrdem(Node no){//eu sou fraco :(
 //        if (no != null) {
 //            System.out.print(no.getCaracter()+"->");
@@ -45,13 +56,9 @@ public class ArvreBinare {
 //            atual = atual.getEsquerda();
 //        }
 //    }
-//    public void inOrdem(Node no){
-//        if (no != null) {
-//            inOrdem(no.getEsquerda());
-//            System.out.print(no.getInfo()+"->");
-//            inOrdem(no.getDireita());
-//        }
-//    }
+    public String getMorseEquivalente(char caracter){
+        return "oi";
+    }
 //    public void posOrdem(Node no){
 //        if (no != null) {
 //            posOrdem(no.getEsquerda());
