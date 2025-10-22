@@ -17,7 +17,7 @@ public class Node {
     public void setDireita(Node direita){
         this.direita = direita;
     }
-    public char getInfo(){
+    public char getCaracter(){
         return info;
     }
     public Node getEsquerda(){
