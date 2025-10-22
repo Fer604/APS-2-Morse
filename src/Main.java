@@ -5,7 +5,8 @@ public class Main {
         System.out.println("---MENU---");
         System.out.println("1. Inserir");
         System.out.println("2. Buscar");
-        System.out.println("3. Sair");
+        System.out.println("3. Remover");
+        System.out.println("0. Sair");
         int opcao = scan.nextInt();
         switch(opcao){
             case 1:
@@ -16,9 +17,19 @@ public class Main {
                 arvre.inserir(codigo,caracter);
                 break;
             case 2:
+                System.out.println("Digite o codigo:");
+                String codigo2 = scan.next();
+                arvre.buscar(codigo2);
+                break;
+            case 3:
+                System.out.println("Digite o codigo:");
+                String codigo3 = scan.next();
+                arvre.remover(codigo3);
+                break;
+            case 0:
+                return;
         }
-
-
+        menu(arvre,scan);
     }
     public static void main(String[] args) {
         //teste

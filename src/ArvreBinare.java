@@ -41,6 +41,15 @@ public class ArvreBinare {
         }
         return atual.getCaracter();
     }
+    public void remover(String codigo) {
+        Node atual = raiz;
+        for (int i = 0; i < codigo.length(); i++) {
+            char simbolo = codigo.charAt(i);
+            if (simbolo == '.') atual = atual.getEsquerda();
+            else if (simbolo == '-') atual = atual.getDireita();
+        }
+        atual.setInfo(' ');
+    }
 //    public void preOrdem(Node no){//eu sou fraco :(
 //        if (no != null) {
 //            System.out.print(no.getCaracter()+"->");
