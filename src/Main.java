@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void menu(ArvreBinare arvre,Scanner scan){
+    public static void menu(ArvoreBinare arvre,Scanner scan){
         System.out.println("---MENU---");
         System.out.println("1. Inserir");
         System.out.println("2. Buscar");
@@ -33,7 +33,7 @@ public class Main {
     }
     public static void main(String[] args) {
         //teste
-        ArvreBinare arvore = new ArvreBinare();
+        ArvoreBinare arvore = new ArvoreBinare();
 
 
         arvore.inserir(".-", 'A');
