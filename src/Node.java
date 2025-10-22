@@ -1,14 +1,14 @@
 public class Node {
-    private String info;
+    private char info;
     private Node esquerda;
     private Node direita;
 
-    public Node(String info) {
+    public Node(char info) {
         this.info = info;
         this.esquerda = null;
         this.direita = null;
     }
-    public void setInfo(String info){
+    public void setInfo(char info){
         this.info = info;
     }
     public void setEsquerda(Node esquerda){
@@ -17,7 +17,7 @@ public class Node {
     public void setDireita(Node direita){
         this.direita = direita;
     }
-    public String getInfo(){
+    public char getInfo(){
         return info;
     }
     public Node getEsquerda(){
