@@ -65,6 +65,16 @@ public class Main {
         arvore.inserir("-..-", 'X');
         arvore.inserir("-.--", 'Y');
         arvore.inserir("--..", 'Z');
+        arvore.inserir(".----", '1');
+        arvore.inserir("..---", '2');
+        arvore.inserir("...--", '3');
+        arvore.inserir("....-", '4');
+        arvore.inserir(".....", '5');
+        arvore.inserir("-....", '6');
+        arvore.inserir("--...", '7');
+        arvore.inserir("---..", '8');
+        arvore.inserir("----.", '9');
+        arvore.inserir("-----", '0');
 
         Scanner scan = new Scanner(System.in);
         menu(arvore,scan);
