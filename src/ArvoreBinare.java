@@ -5,19 +5,21 @@ public class ArvoreBinare {
         raiz = new Node(' ');
     }
 
-    public Node getRaiz() {// serve pra poder chamar as funções recursivas sem ter que fazer isso nessa
-                           // classe
+    public Node getRaiz() {
         return raiz;
     }
 
     public void inserir(String codigo, char caracter) {
         Node atual = raiz;
+
         for (int i = 0; i < codigo.length(); i++) {
             char simbolo = codigo.charAt(i);
+
             if (simbolo == '.') {
                 if (atual.getEsquerda() == null)
                     atual.setEsquerda(new Node(' '));
                 atual = atual.getEsquerda();
+
             } else if (simbolo == '-') {
                 if (atual.getDireita() == null)
                     atual.setDireita(new Node(' '));
@@ -31,7 +33,9 @@ public class ArvoreBinare {
         if (no != null) {
             for (int i = 0; i < nivel; i++)
                 System.out.print("--");
+
             System.out.println(no.getCaracter());
+
             exibir(no.getEsquerda(), nivel + 1);
             exibir(no.getDireita(), nivel + 1);
         }
@@ -39,56 +43,90 @@ public class ArvoreBinare {
 
     public char buscar(String codigo) {
         Node atual = raiz;
+
         for (int i = 0; i < codigo.length(); i++) {
             char simbolo = codigo.charAt(i);
+
             if (simbolo == '.')
                 atual = atual.getEsquerda();
+
             else if (simbolo == '-')
                 atual = atual.getDireita();
 
-            if (atual == null)
-                return '?'; // não encontrado
+            if (atual == null) {
+                System.out.println("Codigo nao encontrado: " + codigo);
+                return '?';
+            }
         }
-        return atual.getCaracter();
+        char encontrado = atual.getCaracter();
+
+        if (encontrado == ' ')
+            System.out.println("Codigo existe mas nao possui caracter associado: " + codigo);
+        else
+            System.out.println("Caracter encontrado: " + encontrado + " para codigo: " + codigo);
+
+        return encontrado;
     }
 
     public void remover(String codigo) {
         Node atual = raiz;
+
         for (int i = 0; i < codigo.length(); i++) {
+
             char simbolo = codigo.charAt(i);
-            if (simbolo == '.')
+            if (simbolo == '.') {
+                if (atual.getEsquerda() == null) {
+                    System.out.println("Codigo nao encontrado para remover: " + codigo);
+                    return;
+                }
                 atual = atual.getEsquerda();
-            else if (simbolo == '-')
+
+            } else if (simbolo == '-') {
+                if (atual.getDireita() == null) {
+                    System.out.println("Codigo nao encontrado para remover: " + codigo);
+                    return;
+                }
                 atual = atual.getDireita();
+
+            } else {
+                System.out.println("Simbolo invalido no codigo: " + simbolo);
+                return;
+            }
         }
         atual.setInfo(' ');
+        System.out.println("Removido caracter associado ao codigo: " + codigo);
     }
 
-    // public void preOrdem(Node no){//eu sou fraco :(
-    // if (no != null) {
-    // System.out.print(no.getCaracter()+"->");
-    // preOrdem(no.getEsquerda());
-    // preOrdem(no.getDireita());
-    //
-    // }
-    // Node atual = raiz;
-    // System.out.println("Pre Ordem");
-    // System.out.println(raiz.getInfo());
-    // while(raiz.getEsquerda() != null){
-    // System.out.println(raiz.getEsquerda().getInfo());
-    // atual = atual.getEsquerda();
-    // }
-    // }
     public String getMorseEquivalente(char caracter) {
-        return "oi";
-    }
-    // public void posOrdem(Node no){
-    // if (no != null) {
-    // posOrdem(no.getEsquerda());
-    // posOrdem(no.getDireita());
-    // System.out.print(no.getInfo()+"->");
-    // }
-    //
-    // }
 
+        if (caracter == ' ')
+            return null;
+
+        String resultado = getMorseEquivalenteRec(raiz, caracter, "");
+
+        if (resultado == null)
+            System.out.println("Caracter nao encontrado na arvore: " + caracter);
+        else
+            System.out.println("Codigo morse para " + caracter + " = " + resultado);
+        return resultado;
+    }
+
+    private String getMorseEquivalenteRec(Node no, char target, String caminho) {
+
+        if (no == null)
+            return null;
+
+        if (Character.toUpperCase(no.getCaracter()) == Character.toUpperCase(target))
+            return caminho;
+        
+        String left = getMorseEquivalenteRec(no.getEsquerda(), target, caminho + ".");
+        if (left != null)
+            return left;
+
+        String right = getMorseEquivalenteRec(no.getDireita(), target, caminho + "-");
+        if (right != null)
+            return right;
+
+        return null;
+    }
 }
