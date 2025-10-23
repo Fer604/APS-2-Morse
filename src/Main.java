@@ -75,6 +75,7 @@ public class Main {
         arvore.inserir("---..", '8');
         arvore.inserir("----.", '9');
         arvore.inserir("-----", '0');
+        arvore.exibir(arvore.getRaiz(), 0);
 
         Scanner scan = new Scanner(System.in);
         menu(arvore,scan);
